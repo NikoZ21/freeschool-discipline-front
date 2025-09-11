@@ -2,8 +2,8 @@ export class ApiClient {
   private baseUrl: string;
   private defaultHeaders: Record<string, string>;
 
-  constructor(baseUrl: string) {
-    this.baseUrl = baseUrl;
+  constructor() {
+    this.baseUrl = import.meta.env.VITE_API_URL;
     this.defaultHeaders = {
       "Content-Type": "application/json",
     };
@@ -20,15 +20,15 @@ export class ApiClient {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        errorData.message || `HTTP ${response.status}: ${response.statusText}`
-      );
+
+      throw new Error(`${errorData.message}`);
     }
 
     return response.json();
   }
 
   public async get<T>(endpoint: string): Promise<T> {
+    console.log("base url >> ", this.baseUrl);
     return this.request<T>(endpoint, { method: "GET" });
   }
 

@@ -141,12 +141,23 @@
   outline-offset: 2px;
 }
 
-/* Form validation styles */
-.form-input:invalid {
+.error-message {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  /* margin-left: 2px; */
+  font-weight: 500;
+  display: block;
+  /* margin-left: 16px; */
+}
+
+/* Form validation styles - controlled by React state */
+.form-input-error {
   border-color: #ef4444;
 }
 
-.form-input:invalid:focus {
+.form-input-error:focus {
   border-color: #ef4444;
   box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
