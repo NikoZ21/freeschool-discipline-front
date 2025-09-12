@@ -60,7 +60,7 @@ export default function Login() {
   const isPasswordInvalid = touched.password && !password.trim();
 
   return (
-    <div className=" bg-gray-50 flex items-center justify-center p-20 rounded-lg shadow-md">
+    <div className=" bg-red-50 flex items-center justify-center p-20 rounded-lg shadow-md">
       <div className="w-full shadow-md">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">Login</h1>
