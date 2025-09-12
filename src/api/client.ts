@@ -1,19 +1,66 @@
 export class ApiClient {
   private baseUrl: string;
-  private defaultHeaders: Record<string, string>;
+  private headers: Record<string, string>;
+  private endpoint: string;
+  private method: string;
+  private body: BodyInit | null;
+  private tokens: { refreshToken: string; accessToken: string } = {
+    refreshToken: "",
+    accessToken: "",
+  };
 
   constructor() {
     this.baseUrl = import.meta.env.VITE_API_URL;
-    this.defaultHeaders = {
+    this.headers = {
       "Content-Type": "application/json",
     };
+    this.endpoint = "";
+    this.method = "GET";
+    this.body = null;
   }
 
-  private async request<T>(endpoint: string, options: RequestInit): Promise<T> {
-    const url = `${this.baseUrl}${endpoint}`;
+  public addHeader(key: string, value: string) {
+    this.headers[key] = value;
+    return this;
+  }
+
+  public setEndpoint(endpoint: string) {
+    this.endpoint = endpoint;
+    return this;
+  }
+
+  public setMethod(method: string) {
+    this.method = method;
+    return this;
+  }
+
+  public setBody(body: BodyInit | null) {
+    this.body = body;
+    return this;
+  }
+
+  public setTokens() {
+    if (
+      !localStorage.getItem("refreshToken") ||
+      !localStorage.getItem("accessToken")
+    ) {
+      throw new Error("Tried to set tokens, but no tokens found");
+    }
+
+    this.tokens.refreshToken = localStorage.getItem("refreshToken")!;
+    this.tokens.accessToken = localStorage.getItem("accessToken")!;
+
+    return this.addHeader("Authorization", `Bearer ${this.tokens.accessToken}`);
+  }
+
+  public async request<T>(): Promise<T> {
+    const url = `${this.baseUrl}${this.endpoint}`;
     const config: RequestInit = {
-      headers: { ...this.defaultHeaders, ...options.headers },
-      ...options,
+      headers: {
+        ...this.headers,
+      } as Record<string, string>,
+      method: this.method,
+      body: this.body as BodyInit | null,
     };
 
     const response = await fetch(url, config);
@@ -25,17 +72,5 @@ export class ApiClient {
     }
 
     return response.json();
-  }
-
-  public async get<T>(endpoint: string): Promise<T> {
-    console.log("base url >> ", this.baseUrl);
-    return this.request<T>(endpoint, { method: "GET" });
-  }
-
-  public async post<T>(endpoint: string, data: unknown): Promise<T> {
-    return this.request<T>(endpoint, {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
   }
 }

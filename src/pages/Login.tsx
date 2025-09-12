@@ -1,10 +1,13 @@
 import { useState } from "react";
 import "./Login.css";
-import { ApiClient } from "../api/client";
-
-const apiClient = new ApiClient();
+import CustomInput from "../components/CustomInput";
+import WrongCredentialsModal from "../components/WrongCredentialsModal";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
+import { useApiContext } from "../contexts/ApiContext";
 
 export default function Login() {
+  const apiClient = useApiContext();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -12,23 +15,36 @@ export default function Login() {
     username: false,
     password: false,
   });
+  const [showErrorModal, setShowErrorModal] = useState(true); // Display for now
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim() || !password.trim()) return;
 
-    console.log(username, password);
-
     setIsLoading(true);
 
     // TODO: Implement actual login functionality
     try {
-      const response = await apiClient.post("/api/auth/login", {
-        username,
-        password,
-      });
+      const response:
+        | { accessToken: string; refreshToken: string }
+        | undefined = await apiClient
+        ?.setEndpoint("/api/auth/login")
+        .setMethod("POST")
+        .setBody(
+          JSON.stringify({
+            username,
+            password,
+          })
+        )
+        .request();
 
-      console.log(response);
+      if (!response) {
+        throw new Error("Failed to login");
+      }
+
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
     } catch (err: unknown) {
       if (err instanceof Error) {
         console.log("Login.tsx error >> ", err.message);
@@ -44,64 +60,75 @@ export default function Login() {
   const isPasswordInvalid = touched.password && !password.trim();
 
   return (
-    <div className="login-page">
-      <div className="login-form-section">
-        <h1 className="login-title">დისციპლინარული ბაზა</h1>
-        <form onSubmit={handleLogin} className="login-form">
-          <div className="form-group">
-            <label htmlFor="username" className="form-label">
-              მომხმარებლის სახელი
-            </label>
-
-            <input
+    <div className=" bg-gray-50 flex items-center justify-center p-20 rounded-lg shadow-md">
+      <div className="w-full shadow-md">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-800">Login</h1>
+        </div>
+        <br />
+        <div className="bg-white rounded-lg shadow-md p-10">
+          <form onSubmit={handleLogin} className="space-y-6">
+            <CustomInput
               id="username"
               type="text"
-              className={`form-input ${
-                isUsernameInvalid ? "form-input-error" : ""
-              }`}
-              placeholder="შეიყვანეთ მომხმარებლის სახელი"
+              placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              required
               onBlur={() => setTouched({ ...touched, username: true })}
+              required
+              errorMessage="Username is required"
+              showError={isUsernameInvalid}
             />
 
-            {isUsernameInvalid && (
-              <p className="error-message">მომხმარებლის სახელი აუცილებელია</p>
-            )}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="password" className="form-label">
-              პაროლი
-            </label>
-            <input
+            <CustomInput
               id="password"
-              type="password"
-              className={`form-input ${
-                isPasswordInvalid ? "form-input-error" : ""
-              }`}
-              placeholder="შეიყვანეთ პაროლი"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
               onBlur={() => setTouched({ ...touched, password: true })}
-            />
+              required
+              errorMessage="Password is required"
+              showError={isPasswordInvalid}
+            >
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-gray-500 hover:text-gray-700 focus:outline-none transition-colors"
+              >
+                {showPassword ? (
+                  <EyeSlashIcon className="w-5 h-5" />
+                ) : (
+                  <EyeIcon className="w-5 h-5" />
+                )}
+              </button>
+            </CustomInput>
 
-            {isPasswordInvalid && (
-              <p className="error-message">პაროლი აუცილებელია</p>
-            )}
-          </div>
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center">
+                <input type="checkbox" className="mr-2" />
+                <span className="text-gray-600">Remember me</span>
+              </label>
+              <a href="#" className="text-blue-500 hover:text-blue-600">
+                Forgot?
+              </a>
+            </div>
 
-          <button
-            type="submit"
-            className="login-button"
-            disabled={isLoading || !username.trim() || !password.trim()}
-          >
-            {isLoading ? "შესვლა..." : "შესვლა"}
-          </button>
-        </form>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isLoading || !username.trim() || !password.trim()}
+            >
+              {isLoading ? "შესვლა..." : "შესვლა"}
+            </button>
+          </form>
+        </div>
       </div>
+
+      <WrongCredentialsModal
+        isOpen={showErrorModal}
+        onClose={() => setShowErrorModal(false)}
+      />
     </div>
   );
 }
