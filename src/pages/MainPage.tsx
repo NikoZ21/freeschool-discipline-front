@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./MainPage.css";
-import OrderTable from "../components/OrderTable";
+import StudentsTable from "../components/StudentsTable";
 
 export default function MainPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -64,7 +64,7 @@ export default function MainPage() {
           <h2 className="section-title">
             მოსწავლეების დისციპლინარული მონაცემები
           </h2>
-          <OrderTable />
+          <StudentsTable />
         </div>
       </div>
     </div>

@@ -132,15 +132,28 @@
 }
 
 .order-table tbody tr {
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Alternating row colors for better distinction */
+.order-table tbody tr:nth-child(even) {
+  background-color: #e2e8f0;
+}
+
+.order-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
 }
 
 .order-table tbody tr:hover {
-  background-color: #f8fafc;
+  background-color: #e0f2fe !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .order-table tbody tr.selected {
-  background-color: #eff6ff;
+  background-color: #dbeafe !important;
+  border-left: 4px solid #3b82f6;
 }
 
 /* Checkbox Column */
@@ -382,4 +395,3 @@
     font-size: 13px;
   }
 }
-

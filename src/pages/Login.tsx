@@ -1,13 +1,15 @@
-import { useState } from "react";
 import "./Login.css";
-import CustomInput from "../components/CustomInput";
-import WrongCredentialsModal from "../components/WrongCredentialsModal";
+
+import { useState } from "react";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import { useApiContext } from "../contexts/ApiContext";
+
+import WrongCredentialsModal from "../components/WrongCredentialsModal";
+import CustomInput from "../components/CustomInput";
+
+import { apiLogin } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const apiClient = useApiContext();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -17,34 +19,30 @@ export default function Login() {
   });
   const [showErrorModal, setShowErrorModal] = useState(true); // Display for now
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim() || !password.trim()) return;
 
     setIsLoading(true);
 
-    // TODO: Implement actual login functionality
     try {
-      const response:
-        | { accessToken: string; refreshToken: string }
-        | undefined = await apiClient
-        ?.setEndpoint("/api/auth/login")
-        .setMethod("POST")
-        .setBody(
-          JSON.stringify({
-            username,
-            password,
-          })
-        )
-        .request();
+      const response = await apiLogin.post("/api/auth/login", {
+        username,
+        password,
+      });
 
       if (!response) {
         throw new Error("Failed to login");
       }
 
-      localStorage.setItem("accessToken", response.accessToken);
-      localStorage.setItem("refreshToken", response.refreshToken);
+      console.log("response", response);
+
+      localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+
+      // window.location.href = "/main";
+      navigate("/main");
     } catch (err: unknown) {
       if (err instanceof Error) {
         console.log("Login.tsx error >> ", err.message);
@@ -76,7 +74,7 @@ export default function Login() {
               onChange={(e) => setUsername(e.target.value)}
               onBlur={() => setTouched({ ...touched, username: true })}
               required
-              errorMessage="Username is required"
+              errorMessage="მომხმარებლის სახელი აუცილებელია"
               showError={isUsernameInvalid}
             />
 
@@ -88,7 +86,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               onBlur={() => setTouched({ ...touched, password: true })}
               required
-              errorMessage="Password is required"
+              errorMessage="პაროლი აუცილებელია"
               showError={isPasswordInvalid}
             >
               <button

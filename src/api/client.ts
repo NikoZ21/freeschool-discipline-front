@@ -73,4 +73,25 @@ export class ApiClient {
 
     return response.json();
   }
+
+  public async requestWithAuthorization<T>(): Promise<T> {
+    const url = `${this.baseUrl}${this.endpoint}`;
+    const config: RequestInit = {
+      headers: {
+        ...this.headers,
+      } as Record<string, string>,
+      method: this.method,
+      body: this.body as BodyInit | null,
+    };
+
+    const response = await fetch(url, config);
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+
+      throw new Error(`${errorData.message}`);
+    }
+
+    return response.json();
+  }
 }
