@@ -3,7 +3,6 @@ import "./MainPage.css";
 import StudentsTable from "../components/StudentsTable";
 
 export default function MainPage() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [students, setStudents] = useState<any[]>([]);
   // const [filteredStudents, setFilteredStudents] = useState<any[]>([]);
   // const [isLoading, setIsLoading] = useState(true);
@@ -28,37 +27,9 @@ export default function MainPage() {
     setTimeout(loadAllStudents, 500);
   }, []);
 
-  // Filter students based on search term
-  useEffect(() => {
-    if (!searchTerm.trim()) {
-      // setFilteredStudents(students);
-    } else {
-      // const filtered = students.filter(
-      //   (student) =>
-      //     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      //     student.grade.toLowerCase().includes(searchTerm.toLowerCase())
-      // );
-      // setFilteredStudents(filtered);
-    }
-  }, [searchTerm, students]);
-
   return (
     <div className="main-page">
       <div className="container">
-        <h1 className="title">სტუდენტების მონაცემთა ბაზა</h1>
-
-        <div className="search-section">
-          <div className="search-container">
-            <input
-              type="text"
-              className="search-input"
-              placeholder="მოძებნე სტუდენტი სახელით ან კლასით..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-        </div>
-
         {/* Order Management Table */}
         <div className="order-management-section">
           <h2 className="section-title">
