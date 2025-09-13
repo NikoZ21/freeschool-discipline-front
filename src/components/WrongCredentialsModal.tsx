@@ -1,5 +1,3 @@
-import React from "react";
-
 interface WrongCredentialsModalProps {
   isOpen: boolean;
   onClose: () => void;

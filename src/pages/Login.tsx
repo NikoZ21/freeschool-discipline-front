@@ -60,8 +60,11 @@ export default function Login() {
   return (
     <div className=" bg-red-50 flex items-center justify-center p-20 rounded-lg shadow-md">
       <div className="w-full shadow-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Login</h1>
+        <div
+          className="text-center mb-8 py-6 px-8 rounded-t-lg"
+          style={{ backgroundColor: "#1e293b" }}
+        >
+          <h1 className="text-3xl font-bold text-white">Login</h1>
         </div>
         <br />
         <div className="bg-white rounded-lg shadow-md p-10">
@@ -69,7 +72,7 @@ export default function Login() {
             <CustomInput
               id="username"
               type="text"
-              placeholder="Username"
+              placeholder="მომხმარებლის სახელი"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               onBlur={() => setTouched({ ...touched, username: true })}
@@ -81,7 +84,7 @@ export default function Login() {
             <CustomInput
               id="password"
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="პაროლი"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               onBlur={() => setTouched({ ...touched, password: true })}
