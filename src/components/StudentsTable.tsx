@@ -28,14 +28,14 @@ interface Student {
 
 const StudentsTable: React.FC = () => {
   const [selectedStudents, setSelectedStudents] = useState<string[]>([]);
-  const [currentFilter, setCurrentFilter] = useState<string>("All");
+  // const [currentFilter, setCurrentFilter] = useState<string>("All");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const itemsPerPage = 9;
 
   // Sample student data
   const students: Student[] = [
     {
-      id: "STD001",
+      id: "01025077162",
       name: "ანა",
       lastname: "ნიკოლაძე",
       usesSchoolBus: true,
@@ -61,7 +61,7 @@ const StudentsTable: React.FC = () => {
       ],
     },
     {
-      id: "STD002",
+      id: "02847319548",
       name: "დავით",
       lastname: "მამარდაშვილი",
       usesSchoolBus: false,
@@ -80,7 +80,7 @@ const StudentsTable: React.FC = () => {
       disciplines: [],
     },
     {
-      id: "STD003",
+      id: "03691724853",
       name: "ნინო",
       lastname: "ცხოვრებაძე",
       usesSchoolBus: true,
@@ -106,7 +106,7 @@ const StudentsTable: React.FC = () => {
       ],
     },
     {
-      id: "STD004",
+      id: "04582936174",
       name: "გიორგი",
       lastname: "კვარცხელია",
       usesSchoolBus: false,
@@ -125,7 +125,7 @@ const StudentsTable: React.FC = () => {
       disciplines: [],
     },
     {
-      id: "STD005",
+      id: "05738241965",
       name: "მარიამ",
       lastname: "ღუდუშაური",
       usesSchoolBus: true,
@@ -145,13 +145,13 @@ const StudentsTable: React.FC = () => {
     },
   ];
 
-  const filterOptions = [
-    "All",
-    "With Disciplines",
-    "School Bus",
-    "Cost Benefits",
-    "Recent Acceptance",
-  ];
+  // const filterOptions = [
+  //   "All",
+  //   "With Disciplines",
+  //   "School Bus",
+  //   "Cost Benefits",
+  //   "Recent Acceptance",
+  // ];
 
   // Show all students since filters are hidden
   const filteredStudents = students;

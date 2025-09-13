@@ -5,8 +5,8 @@ import StudentsTable from "../components/StudentsTable";
 export default function MainPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [students, setStudents] = useState<any[]>([]);
-  const [filteredStudents, setFilteredStudents] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [filteredStudents, setFilteredStudents] = useState<any[]>([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
   // Load all students on component mount
   useEffect(() => {
@@ -20,8 +20,8 @@ export default function MainPage() {
         { id: 5, name: "ლუკა ნოზაძე", grade: "8ვ", age: 14 },
       ];
       setStudents(allStudents);
-      setFilteredStudents(allStudents);
-      setIsLoading(false);
+      // setFilteredStudents(allStudents);
+      // setIsLoading(false);
     };
 
     // Simulate loading delay
@@ -31,14 +31,14 @@ export default function MainPage() {
   // Filter students based on search term
   useEffect(() => {
     if (!searchTerm.trim()) {
-      setFilteredStudents(students);
+      // setFilteredStudents(students);
     } else {
-      const filtered = students.filter(
-        (student) =>
-          student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          student.grade.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setFilteredStudents(filtered);
+      // const filtered = students.filter(
+      //   (student) =>
+      //     student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      //     student.grade.toLowerCase().includes(searchTerm.toLowerCase())
+      // );
+      // setFilteredStudents(filtered);
     }
   }, [searchTerm, students]);
 
