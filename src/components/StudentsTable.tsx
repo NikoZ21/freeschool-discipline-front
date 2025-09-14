@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./StudentsTable.css";
+import EditStudent from "./EditStudent";
 
 interface Student {
   id: string;
@@ -35,10 +36,12 @@ const StudentsTable: React.FC = () => {
   const [busFilter, setBusFilter] = useState<string>("");
   const [yearFilter, setYearFilter] = useState<string>("");
   const [agreementFilter, setAgreementFilter] = useState<string>("");
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [studentToEdit, setStudentToEdit] = useState<Student | null>(null);
   const itemsPerPage = 9;
 
   // Sample student data
-  const students: Student[] = [
+  const initialStudents: Student[] = [
     {
       id: "01025077162",
       name: "ანა",
@@ -150,6 +153,9 @@ const StudentsTable: React.FC = () => {
     },
   ];
 
+  // Initialize studentsData with sample data
+  const [studentsData, setStudentsData] = useState<Student[]>(initialStudents);
+
   // const filterOptions = [
   //   "All",
   //   "With Disciplines",
@@ -159,7 +165,7 @@ const StudentsTable: React.FC = () => {
   // ];
 
   // Filter students based on search term and filters
-  const filteredStudents = students.filter((student) => {
+  const filteredStudents = studentsData.filter((student) => {
     // Search filter
     let matchesSearch = true;
     if (searchTerm.trim()) {
@@ -208,10 +214,10 @@ const StudentsTable: React.FC = () => {
   });
 
   // Get unique values for filter options
-  const uniqueRegions = [...new Set(students.map((s) => s.region))];
-  const uniqueGrades = [...new Set(students.map((s) => s.grade))];
+  const uniqueRegions = [...new Set(studentsData.map((s) => s.region))];
+  const uniqueGrades = [...new Set(studentsData.map((s) => s.grade))];
   const uniqueYears = [
-    ...new Set(students.map((s) => s.acceptanceDate.split(".")[0])),
+    ...new Set(studentsData.map((s) => s.acceptanceDate.split(".")[0])),
   ].sort((a, b) => b.localeCompare(a));
 
   const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
@@ -249,6 +255,29 @@ const StudentsTable: React.FC = () => {
   const formatDate = (dateString: string) => {
     const [year, month, day] = dateString.split(".");
     return `${day}.${month}.${year}`;
+  };
+
+  const handleEditStudent = () => {
+    if (selectedStudents.length === 1) {
+      const student = studentsData.find((s) => s.id === selectedStudents[0]);
+      if (student) {
+        setStudentToEdit(student);
+        setIsEditModalOpen(true);
+      }
+    }
+  };
+
+  const handleSaveStudent = (updatedStudent: Student) => {
+    setStudentsData((prev) =>
+      prev.map((student) =>
+        student.id === updatedStudent.id ? updatedStudent : student
+      )
+    );
+  };
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOpen(false);
+    setStudentToEdit(null);
   };
 
   return (
@@ -376,9 +405,18 @@ const StudentsTable: React.FC = () => {
             <span className="selected-count">
               {selectedStudents.length} Selected
             </span>
-            <button className="action-btn duplicate-btn">📄 Export</button>
-            <button className="action-btn print-btn">🖨️ Print</button>
-            <button className="action-btn delete-btn">🗑️ Delete</button>
+            <button
+              className={`action-btn edit-btn ${
+                selectedStudents.length !== 1 ? "disabled" : ""
+              }`}
+              onClick={handleEditStudent}
+              disabled={selectedStudents.length !== 1}
+            >
+              ✏️ ჩასწორება
+            </button>
+            <button className="action-btn delete-btn">🗑️ წაშლა</button>
+            {/* <button className="action-btn duplicate-btn">📄 Export</button>
+            <button className="action-btn print-btn">🖨️ Print</button> */}
             <button
               className="close-btn"
               onClick={() => setSelectedStudents([])}
@@ -533,6 +571,14 @@ const StudentsTable: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Edit Student Modal */}
+      <EditStudent
+        student={studentToEdit}
+        isOpen={isEditModalOpen}
+        onClose={handleCloseEditModal}
+        onSave={handleSaveStudent}
+      />
     </div>
   );
 };
