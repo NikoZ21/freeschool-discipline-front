@@ -1,29 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-interface Student {
-  id: string;
-  name: string;
-  lastname: string;
-  usesSchoolBus: boolean;
-  region: string;
-  siblings: string;
-  mother: string;
-  father: string;
-  personInCharge: string;
-  grade: string;
-  acceptanceDate: string;
-  recommendation: string;
-  currentCost: number;
-  personalInfoAgreement: boolean;
-  costBenefits: string;
-  images: string[];
-  disciplines: {
-    date: string;
-    name: string;
-    comment: string;
-    attachments: string[];
-  }[];
-}
+import { type Student } from "../data/students";
 
 interface EditStudentProps {
   student: Student | null;
