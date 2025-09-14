@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./StudentsTable.css";
 
 interface Student {
   id: string;
@@ -90,64 +89,77 @@ const EditStudent: React.FC<EditStudentProps> = ({
   if (!isOpen || !formData) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <div className="modal-header">
-          <h2>სტუდენტის რედაქტირება</h2>
-          <button className="modal-close-btn" onClick={handleCancel}>
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 backdrop-blur-sm">
+      <div className="bg-white shadow-2xl max-w-4xl w-11/12 max-h-[90vh] overflow-y-auto">
+        <div className="flex justify-between items-center px-8 py-6 border-b border-slate-800 bg-slate-700">
+          <h2 className="text-2xl font-semibold text-white">
+            სტუდენტის რედაქტირება
+          </h2>
+          <button
+            className="text-gray-300 hover:text-white hover:bg-slate-600 p-2 transition-all duration-200 text-2xl"
+            onClick={handleCancel}
+          >
             ✕
           </button>
         </div>
 
-        <div className="modal-body">
-          <form className="edit-form">
+        <div className="px-8 py-8">
+          <form className="space-y-6">
             {/* Personal ID - readonly */}
-            <div className="form-group">
-              <label className="form-label">პირადი ნომერი:</label>
+            <div className="flex flex-col space-y-2">
+              <label className="text-sm font-semibold text-gray-700">
+                პირადი ნომერი:
+              </label>
               <input
                 type="text"
                 name="id"
                 value={formData.id}
-                className="form-input readonly"
+                className="px-4 py-3 border-2 border-gray-200  bg-gray-50 text-gray-600 cursor-not-allowed focus:outline-none"
                 readOnly
               />
             </div>
 
             {/* Name and Lastname */}
-            <div className="form-row">
-              <div className="form-group">
-                <label className="form-label">სახელი:</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  სახელი:
+                </label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="form-input"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                   required
                 />
               </div>
-              <div className="form-group">
-                <label className="form-label">გვარი:</label>
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  გვარი:
+                </label>
                 <input
                   type="text"
                   name="lastname"
                   value={formData.lastname}
                   onChange={handleInputChange}
-                  className="form-input"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                   required
                 />
               </div>
             </div>
 
             {/* Grade and Region */}
-            <div className="form-row">
-              <div className="form-group">
-                <label className="form-label">კლასი:</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  კლასი:
+                </label>
                 <select
                   name="grade"
                   value={formData.grade}
                   onChange={handleInputChange}
-                  className="form-select"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 bg-white text-gray-900"
                   required
                 >
                   <option value="">აირჩიეთ კლასი</option>
@@ -165,13 +177,15 @@ const EditStudent: React.FC<EditStudentProps> = ({
                   <option value="12th">მე-12 კლასი</option>
                 </select>
               </div>
-              <div className="form-group">
-                <label className="form-label">უბანი:</label>
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  უბანი:
+                </label>
                 <select
                   name="region"
                   value={formData.region}
                   onChange={handleInputChange}
-                  className="form-select"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 bg-white text-gray-900"
                   required
                 >
                   <option value="">აირჩიეთ უბანი</option>
@@ -188,58 +202,68 @@ const EditStudent: React.FC<EditStudentProps> = ({
             </div>
 
             {/* Parents */}
-            <div className="form-row">
-              <div className="form-group">
-                <label className="form-label">დედა:</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  დედა:
+                </label>
                 <input
                   type="text"
                   name="mother"
                   value={formData.mother}
                   onChange={handleInputChange}
-                  className="form-input"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                 />
               </div>
-              <div className="form-group">
-                <label className="form-label">მამა:</label>
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  მამა:
+                </label>
                 <input
                   type="text"
                   name="father"
                   value={formData.father}
                   onChange={handleInputChange}
-                  className="form-input"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                 />
               </div>
             </div>
 
             {/* Person in charge and siblings */}
-            <div className="form-row">
-              <div className="form-group">
-                <label className="form-label">მეურვე:</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  მეურვე:
+                </label>
                 <input
                   type="text"
                   name="personInCharge"
                   value={formData.personInCharge}
                   onChange={handleInputChange}
-                  className="form-input"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                   required
                 />
               </div>
-              <div className="form-group">
-                <label className="form-label">დედმამიშვილი:</label>
+              <div className="flex flex-col space-y-2">
+                <label className="text-sm font-semibold text-gray-700">
+                  დედმამიშვილი:
+                </label>
                 <input
                   type="text"
                   name="siblings"
                   value={formData.siblings}
                   onChange={handleInputChange}
-                  className="form-input"
+                  className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                   placeholder="მაგ: 2 brothers, 1 sister, none"
                 />
               </div>
             </div>
 
             {/* Acceptance Date */}
-            <div className="form-group">
-              <label className="form-label">მიღების თარიღი:</label>
+            <div className="flex flex-col space-y-2">
+              <label className="text-sm font-semibold text-gray-700">
+                მიღების თარიღი:
+              </label>
               <input
                 type="date"
                 name="acceptanceDate"
@@ -259,20 +283,22 @@ const EditStudent: React.FC<EditStudentProps> = ({
                     },
                   });
                 }}
-                className="form-input"
+                className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                 required
               />
             </div>
 
             {/* Cost */}
-            <div className="form-group">
-              <label className="form-label">გადასახადი (ლარი):</label>
+            <div className="flex flex-col space-y-2">
+              <label className="text-sm font-semibold text-gray-700">
+                გადასახადი (ლარი):
+              </label>
               <input
                 type="number"
                 name="currentCost"
                 value={formData.currentCost}
                 onChange={handleInputChange}
-                className="form-input"
+                className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-gray-900"
                 min="0"
                 step="1"
                 required
@@ -280,54 +306,58 @@ const EditStudent: React.FC<EditStudentProps> = ({
             </div>
 
             {/* Recommendation */}
-            <div className="form-group">
-              <label className="form-label">რეკომენდაცია:</label>
+            <div className="flex flex-col space-y-2">
+              <label className="text-sm font-semibold text-gray-700">
+                რეკომენდაცია:
+              </label>
               <textarea
                 name="recommendation"
                 value={formData.recommendation}
                 onChange={handleInputChange}
-                className="form-textarea"
+                className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 resize-y min-h-[80px] text-gray-900"
                 rows={3}
                 placeholder="სტუდენტის შესახებ რეკომენდაცია..."
               />
             </div>
 
             {/* Cost Benefits */}
-            <div className="form-group">
-              <label className="form-label">შეღავათები:</label>
+            <div className="flex flex-col space-y-2">
+              <label className="text-sm font-semibold text-gray-700">
+                შეღავათები:
+              </label>
               <textarea
                 name="costBenefits"
                 value={formData.costBenefits}
                 onChange={handleInputChange}
-                className="form-textarea"
+                className="px-4 py-3 border-2 border-gray-200  focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-200 resize-y min-h-[60px] text-gray-900"
                 rows={2}
                 placeholder="გადასახდის შეღავათები..."
               />
             </div>
 
             {/* Checkboxes */}
-            <div className="form-row">
-              <div className="form-group checkbox-group">
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="usesSchoolBus"
-                    checked={formData.usesSchoolBus}
-                    onChange={handleInputChange}
-                    className="form-checkbox"
-                  />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  name="usesSchoolBus"
+                  checked={formData.usesSchoolBus}
+                  onChange={handleInputChange}
+                  className="w-5 h-5 accent-slate-700 border-2 border-gray-300 focus:ring-slate-500 focus:ring-2 bg-white"
+                />
+                <label className="text-sm font-medium text-gray-700 cursor-pointer">
                   სკოლის ავტობუსი
                 </label>
               </div>
-              <div className="form-group checkbox-group">
-                <label className="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="personalInfoAgreement"
-                    checked={formData.personalInfoAgreement}
-                    onChange={handleInputChange}
-                    className="form-checkbox"
-                  />
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  name="personalInfoAgreement"
+                  checked={formData.personalInfoAgreement}
+                  onChange={handleInputChange}
+                  className="w-5 h-5 accent-slate-700 border-2 border-gray-300 focus:ring-slate-500 focus:ring-2 bg-white"
+                />
+                <label className="text-sm font-medium text-gray-700 cursor-pointer">
                   პირადი ინფორმაციის თანხმობა
                 </label>
               </div>
@@ -335,11 +365,17 @@ const EditStudent: React.FC<EditStudentProps> = ({
           </form>
         </div>
 
-        <div className="modal-footer">
-          <button className="btn btn-secondary" onClick={handleCancel}>
+        <div className="flex justify-end space-x-4 px-8 py-6 border-t border-gray-200 bg-gray-50">
+          <button
+            className="px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold  hover:bg-gray-100 transition-all duration-200"
+            onClick={handleCancel}
+          >
             გაუქმება
           </button>
-          <button className="btn btn-primary" onClick={handleSave}>
+          <button
+            className="px-6 py-3 bg-slate-700 text-white font-semibold  hover:bg-slate-800 hover:-translate-y-0.5 transition-all duration-200 shadow-lg hover:shadow-xl"
+            onClick={handleSave}
+          >
             შენახვა
           </button>
         </div>
