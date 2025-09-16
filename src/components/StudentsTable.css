@@ -413,13 +413,14 @@
 }
 
 .page-btn:hover:not(:disabled) {
-  background: #f9fafb;
-  border-color: #9ca3af;
+  background: #475569;
+  border-color: #475569;
+  color: white;
 }
 
 .page-btn.active {
-  background: #3b82f6;
-  border-color: #3b82f6;
+  background: #334155;
+  border-color: #334155;
   color: white;
 }
 
