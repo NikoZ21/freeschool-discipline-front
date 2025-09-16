@@ -1,0 +1,16 @@
+name: Test Runner User
+
+on:
+  push:
+    branches:
+      - main # or any branch you want to trigger on
+
+jobs:
+  check-user:
+    runs-on: self-hosted
+    steps:
+      - name: Check runner user
+        run: whoami
+
+      - name: Check detailed info
+        run: id
