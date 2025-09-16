@@ -7,10 +7,10 @@ on:
 
 jobs:
   check-user:
-    runs-on: self-hosted
+    runs-on: self-hosted # ensures it runs on your self-hosted runner
     steps:
-      - name: Check runner user
+      - name: Print username
         run: whoami
 
-      - name: Check detailed info
+      - name: Print detailed user info
         run: id
