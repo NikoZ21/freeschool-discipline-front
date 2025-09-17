@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Login from "./pages/Login.tsx";
 import MainPage from "./pages/MainPage.tsx";
+import Registration from "./pages/Registration.tsx";
+
 import { ApiContext } from "./contexts/ApiContext.ts";
 import { ApiClient } from "./api/client.ts";
 
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/main",
     element: <MainPage />,
+  },
+  {
+    path: "/registration",
+    element: <Registration />,
   },
 ]);
 createRoot(document.getElementById("root")!).render(

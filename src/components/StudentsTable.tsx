@@ -318,8 +318,8 @@ const StudentsTable: React.FC = () => {
                 <th>გადასახადი ↕</th>
                 <th>თანხმობა ↕</th>
                 <th>შეღავათები ↕</th>
-                <th>სურათები ↕</th>
                 <th>დისციპლინა ↕</th>
+                <th>სურათები ↕</th>
               </tr>
             </thead>
             <tbody>
@@ -376,7 +376,6 @@ const StudentsTable: React.FC = () => {
                     </span>
                   </td>
                   <td className="benefits">{student.costBenefits}</td>
-                  <td>{student.images.length} ფაილი</td>
                   <td>
                     <span
                       className="status-badge"
@@ -389,6 +388,7 @@ const StudentsTable: React.FC = () => {
                       {student.disciplines.length}
                     </span>
                   </td>
+                  <td>{student.images.length} ფაილი</td>
                 </tr>
               ))}
             </tbody>

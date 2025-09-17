@@ -1,0 +1,121 @@
+{
+  "colorPalette": {
+    "primary": {
+      "blue": "#3b82f6",
+      "blueHover": "#2563eb",
+      "blueLight": "#1d4ed8",
+      "blueFocus": "rgba(59, 130, 246, 0.1)"
+    },
+    "secondary": {
+      "slate": "#334155",
+      "slateHover": "#475569",
+      "slateDark": "#0f172a"
+    },
+    "neutral": {
+      "white": "#ffffff",
+      "gray50": "#f9fafb",
+      "gray100": "#f3f4f6",
+      "gray200": "#e5e7eb",
+      "gray300": "#d1d5db",
+      "gray400": "#9ca3af",
+      "gray500": "#6b7280",
+      "gray600": "#374151",
+      "gray700": "#1f2937",
+      "gray800": "#242424",
+      "gray900": "#333333"
+    },
+    "background": {
+      "primary": "#ffffff",
+      "secondary": "#f8f9fa",
+      "tertiary": "#f8fafc",
+      "hover": "#e0f2fe",
+      "selected": "#dbeafe",
+      "tableEven": "#e2e8f0",
+      "tableOdd": "#ffffff",
+      "modalOverlay": "rgba(0, 0, 0, 0.6)"
+    },
+    "status": {
+      "success": "#4caf50",
+      "successText": "#059669",
+      "successBg": "#d1fae5",
+      "successBorder": "#a7f3d0",
+      "successDark": "#065f46",
+      "warning": "#ff9800",
+      "warningAccent": "#ffd700",
+      "warningHover": "#ffcc00",
+      "error": "#f44336",
+      "errorText": "#dc2626",
+      "errorBg": "#fee2e2",
+      "errorBorder": "#fca5a5",
+      "errorDark": "#991b1b",
+      "errorFocus": "rgba(239, 68, 68, 0.1)",
+      "paid": "#059669",
+      "unpaid": "#dc2626"
+    },
+    "text": {
+      "primary": "#374151",
+      "secondary": "#6b7280",
+      "tertiary": "#9ca3af",
+      "dark": "#333333",
+      "darker": "#242424",
+      "white": "#ffffff",
+      "placeholder": "#9ca3af",
+      "disabled": "#6b7280"
+    },
+    "border": {
+      "light": "#e5e7eb",
+      "medium": "#d1d5db",
+      "focus": "#3b82f6",
+      "error": "#ef4444",
+      "table": "#f3f4f6",
+      "tableRow": "#f1f5f9",
+      "selected": "#3b82f6"
+    },
+    "shadow": {
+      "light": "0 1px 3px rgba(0, 0, 0, 0.1)",
+      "medium": "0 2px 8px rgba(0, 0, 0, 0.1)",
+      "large": "0 2px 12px rgba(0, 0, 0, 0.08)",
+      "xlarge": "0 8px 32px rgba(0, 0, 0, 0.1)",
+      "button": "0 2px 8px rgba(59, 130, 246, 0.3)",
+      "buttonHover": "0 6px 20px rgba(59, 130, 246, 0.4)",
+      "tableHover": "0 2px 8px rgba(0, 0, 0, 0.1)",
+      "cardHover": "0 8px 25px rgba(255, 215, 0, 0.2)",
+      "modal": "0 20px 60px rgba(0, 0, 0, 0.3)"
+    },
+    "gradient": {
+      "buttonPrimary": "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
+      "buttonPrimaryHover": "linear-gradient(135deg, #2563eb 0%, #1e40af 100%)",
+      "shimmer": "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)",
+      "headerShine": "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent)"
+    },
+    "form": {
+      "inputBg": "#f8fafc",
+      "inputBgFocus": "#ffffff",
+      "inputBgDisabled": "#f9fafb",
+      "inputBorder": "#d1d5db",
+      "inputBorderHover": "#9ca3af",
+      "inputBorderFocus": "#3b82f6",
+      "inputBorderError": "#ef4444",
+      "selectBg": "#ffffff"
+    },
+    "button": {
+      "primaryBg": "#3b82f6",
+      "primaryHover": "#2563eb",
+      "primaryText": "#ffffff",
+      "secondaryBg": "#f3f4f6",
+      "secondaryHover": "#e5e7eb",
+      "secondaryText": "#374151",
+      "secondaryBorder": "#d1d5db",
+      "disabledBg": "#9ca3af",
+      "disabledText": "#ffffff",
+      "closeBg": "none",
+      "closeText": "#6b7280",
+      "closeHover": "#374151"
+    },
+    "disciplines": {
+      "none": "#4caf50",
+      "few": "#ff9800",
+      "many": "#f44336"
+    }
+  }
+}

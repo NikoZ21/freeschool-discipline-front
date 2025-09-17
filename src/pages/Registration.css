@@ -1,0 +1,243 @@
+/* Import color variables from theme */
+:root {
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-primary: #ffffff;
+  --color-text-dark: #333333;
+  --color-text-primary: #374151;
+  --color-shadow-xlarge: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --color-gradient-button-primary: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #1d4ed8 100%
+  );
+  --color-gradient-button-primary-hover: linear-gradient(
+    135deg,
+    #2563eb 0%,
+    #1e40af 100%
+  );
+  --color-shadow-button-hover: 0 6px 20px rgba(59, 130, 246, 0.4);
+  --color-button-disabled: #9ca3af;
+  --color-shadow-button: 0 4px 12px rgba(59, 130, 246, 0.3);
+  --color-status-success-bg: #d1fae5;
+  --color-status-success-dark: #065f46;
+  --color-status-success-border: #a7f3d0;
+  --color-status-error-bg: #fee2e2;
+  --color-status-error-dark: #991b1b;
+  --color-status-error-border: #fca5a5;
+  --color-primary-blue-focus: rgba(59, 130, 246, 0.4);
+}
+
+.registration-page {
+  min-height: 100vh;
+  background: var(--color-bg-secondary);
+  padding: 2rem 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.registration-section {
+  margin-top: 3rem;
+}
+
+.section-title {
+  color: var(--color-text-dark);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-container {
+  background: var(--color-bg-primary);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: var(--color-shadow-xlarge);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.form-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button {
+  background: var(--color-gradient-button-primary);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+  box-shadow: var(--color-shadow-button);
+}
+
+.submit-button:hover:not(:disabled) {
+  background: var(--color-gradient-button-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--color-shadow-button-hover);
+}
+
+.submit-button:disabled {
+  background: var(--color-button-disabled);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button.submitting {
+  background: var(--color-button-disabled);
+  position: relative;
+}
+
+.submit-button.submitting::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.submit-message {
+  margin-top: 1rem;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.submit-message.success {
+  background: var(--color-status-success-bg);
+  color: var(--color-status-success-dark);
+  border: 1px solid var(--color-status-success-border);
+}
+
+.submit-message.error {
+  background: var(--color-status-error-bg);
+  color: var(--color-status-error-dark);
+  border: 1px solid var(--color-status-error-border);
+}
+
+/* Loading animation for form submission */
+.form-container.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.form-container.loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: loading-shimmer 2s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .registration-page {
+    padding: 1rem 0.5rem;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .form-container {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 14px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    margin: 0;
+    padding: 1.5rem 1rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Focus states for better accessibility */
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-primary-blue-focus);
+}
+
+/* Custom input styling integration */
+.form-group input {
+  border-radius: 8px;
+  border: 1px solid var(--color-form-input-border, #d1d5db);
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: var(--color-form-input-border-focus, #3b82f6);
+  box-shadow: 0 0 0 3px var(--color-primary-blue-focus);
+}
