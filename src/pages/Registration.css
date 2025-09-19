@@ -5,26 +5,18 @@
   --color-text-dark: #333333;
   --color-text-primary: #374151;
   --color-shadow-xlarge: 0 8px 32px rgba(0, 0, 0, 0.1);
-  --color-gradient-button-primary: linear-gradient(
-    135deg,
-    #3b82f6 0%,
-    #1d4ed8 100%
-  );
-  --color-gradient-button-primary-hover: linear-gradient(
-    135deg,
-    #2563eb 0%,
-    #1e40af 100%
-  );
-  --color-shadow-button-hover: 0 6px 20px rgba(59, 130, 246, 0.4);
+  --color-button-primary: #334155;
+  --color-button-primary-hover: #475569;
+  --color-shadow-button-hover: 0 6px 20px rgba(51, 65, 85, 0.4);
   --color-button-disabled: #9ca3af;
-  --color-shadow-button: 0 4px 12px rgba(59, 130, 246, 0.3);
+  --color-shadow-button: 0 4px 12px rgba(51, 65, 85, 0.3);
   --color-status-success-bg: #d1fae5;
   --color-status-success-dark: #065f46;
   --color-status-success-border: #a7f3d0;
   --color-status-error-bg: #fee2e2;
   --color-status-error-dark: #991b1b;
   --color-status-error-border: #fca5a5;
-  --color-primary-blue-focus: rgba(59, 130, 246, 0.4);
+  --color-primary-blue-focus: rgba(51, 65, 85, 0.4);
 }
 
 .registration-page {
@@ -86,7 +78,7 @@
 }
 
 .submit-button {
-  background: var(--color-gradient-button-primary);
+  background: yellow;
   color: white;
   padding: 12px 24px;
   border: none;
@@ -100,20 +92,20 @@
 }
 
 .submit-button:hover:not(:disabled) {
-  background: var(--color-gradient-button-primary-hover);
+  /* background: var(--color-button-primary-hover); */
   transform: translateY(-2px);
   box-shadow: var(--color-shadow-button-hover);
 }
 
 .submit-button:disabled {
-  background: var(--color-button-disabled);
+  /* background: var(--color-button-disabled); */
   cursor: not-allowed;
   transform: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .submit-button.submitting {
-  background: var(--color-button-disabled);
+  /* background: var(--color-button-disabled); */
   position: relative;
 }
 
@@ -238,6 +230,6 @@
 }
 
 .form-group input:focus {
-  border-color: var(--color-form-input-border-focus, #3b82f6);
+  border-color: var(--color-form-input-border-focus, #334155);
   box-shadow: 0 0 0 3px var(--color-primary-blue-focus);
 }

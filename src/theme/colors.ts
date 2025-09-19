@@ -4,7 +4,7 @@
 export const colors = {
   // Primary brand colors
   primary: {
-    blue: "#3b82f6",
+    blue: "#334155",
     blueHover: "#2563eb",
     blueLight: "#1d4ed8",
     blueFocus: "rgba(59, 130, 246, 0.1)",
@@ -80,11 +80,11 @@ export const colors = {
   border: {
     light: "#e5e7eb",
     medium: "#d1d5db",
-    focus: "#3b82f6",
+    focus: "#334155",
     error: "#ef4444",
     table: "#f3f4f6",
     tableRow: "#f1f5f9",
-    selected: "#3b82f6",
+    selected: "#334155",
   },
 
   // Shadow definitions
@@ -93,8 +93,8 @@ export const colors = {
     medium: "0 2px 8px rgba(0, 0, 0, 0.1)",
     large: "0 2px 12px rgba(0, 0, 0, 0.08)",
     xlarge: "0 8px 32px rgba(0, 0, 0, 0.1)",
-    button: "0 2px 8px rgba(59, 130, 246, 0.3)",
-    buttonHover: "0 6px 20px rgba(59, 130, 246, 0.4)",
+    button: "0 2px 8px rgba(51, 65, 85, 0.3)",
+    buttonHover: "0 6px 20px rgba(51, 65, 85, 0.4)",
     tableHover: "0 2px 8px rgba(0, 0, 0, 0.1)",
     cardHover: "0 8px 25px rgba(255, 215, 0, 0.2)",
     modal: "0 20px 60px rgba(0, 0, 0, 0.3)",
@@ -102,8 +102,8 @@ export const colors = {
 
   // Gradient definitions
   gradient: {
-    buttonPrimary: "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)",
-    buttonPrimaryHover: "linear-gradient(135deg, #2563eb 0%, #1e40af 100%)",
+    buttonPrimary: "linear-gradient(135deg, #334155 0%, #0f172a 100%)",
+    buttonPrimaryHover: "linear-gradient(135deg, #475569 0%, #334155 100%)",
     shimmer:
       "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)",
     headerShine:
@@ -117,15 +117,15 @@ export const colors = {
     inputBgDisabled: "#f9fafb",
     inputBorder: "#d1d5db",
     inputBorderHover: "#9ca3af",
-    inputBorderFocus: "#3b82f6",
+    inputBorderFocus: "#334155",
     inputBorderError: "#ef4444",
     selectBg: "#ffffff",
   },
 
   // Button-specific colors
   button: {
-    primaryBg: "#3b82f6",
-    primaryHover: "#2563eb",
+    primaryBg: "#334155",
+    primaryHover: "#475569",
     primaryText: "#ffffff",
     secondaryBg: "#f3f4f6",
     secondaryHover: "#e5e7eb",

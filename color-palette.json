@@ -1,7 +1,7 @@
 {
   "colorPalette": {
     "primary": {
-      "blue": "#3b82f6",
+      "blue": "#334155",
       "blueHover": "#2563eb",
       "blueLight": "#1d4ed8",
       "blueFocus": "rgba(59, 130, 246, 0.1)"
@@ -99,8 +99,8 @@
       "selectBg": "#ffffff"
     },
     "button": {
-      "primaryBg": "#3b82f6",
-      "primaryHover": "#2563eb",
+      "primaryBg": "#334155",
+      "primaryHover": "#475569",
       "primaryText": "#ffffff",
       "secondaryBg": "#f3f4f6",
       "secondaryHover": "#e5e7eb",
